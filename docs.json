@@ -1,0 +1,31 @@
+{
+  "title": "Leetcode Hot 100",
+  "sections": [
+    {
+      "title": "主页",
+      "items": [
+        {
+          "title": "解题方法论",
+          "path": "docs/index.md"
+        }
+      ]
+    },
+    {
+      "title": "Hash",
+      "items": [
+        {
+          "title": "Hash 基础",
+          "path": "docs/Hash/Hash.md"
+        },
+        {
+          "title": "Two Sum",
+          "path": "docs/Hash/twoSum.md"
+        },
+        {
+          "title": "Group Anagrams",
+          "path": "docs/Hash/groupAnagrams.md"
+        }
+      ]
+    }
+  ]
+}
