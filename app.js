@@ -36,8 +36,9 @@
           inCode = true;
           codeLang = trimmed.slice(3).trim();
           closeList();
+          var langClass = codeLang ? ' class="language-' + escapeHtml(codeLang) + '"' : '';
           html.push(
-            '<pre><code data-lang="' +
+            '<pre><code' + langClass + ' data-lang="' +
               escapeHtml(codeLang) +
               '">'
           );
@@ -280,7 +281,7 @@
       return;
     }
 
-    fetch(path)
+    fetch(path + "?t=" + Date.now())
       .then(function (res) {
         if (!res.ok) {
           throw new Error("无法读取文档");
@@ -290,6 +291,10 @@
       .then(function (text) {
         var html = renderMarkdown(text);
         contentEl.innerHTML = html;
+        // 语法高亮
+        contentEl.querySelectorAll("pre code").forEach(function (block) {
+          hljs.highlightElement(block);
+        });
         annotateAll();
         setActiveItem(path);
       })

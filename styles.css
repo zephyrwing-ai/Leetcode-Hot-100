@@ -96,15 +96,31 @@ body {
 }
 
 .doc-content pre {
-  background: #0b1020;
-  color: #e5e7eb;
+  background: #282c34;
+  color: #abb2bf;
   padding: 16px;
   border-radius: 10px;
   overflow: auto;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 .doc-content code {
   font-family: "JetBrains Mono", "Fira Code", Menlo, Monaco, monospace;
+}
+
+.doc-content p code,
+.doc-content li code {
+  background: #f1f5f9;
+  color: #e11d48;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.doc-content pre code.hljs {
+  background: transparent;
+  padding: 0;
 }
 
 .code-line {

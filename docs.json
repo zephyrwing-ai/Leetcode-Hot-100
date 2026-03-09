@@ -6,7 +6,7 @@
       "items": [
         {
           "title": "解题方法论",
-          "path": "docs/index.md"
+          "path": "index.md"
         }
       ]
     },
@@ -15,15 +15,40 @@
       "items": [
         {
           "title": "Hash 基础",
-          "path": "docs/Hash/Hash.md"
+          "path": "Hash/Hash.md"
         },
         {
           "title": "Two Sum",
-          "path": "docs/Hash/twoSum.md"
+          "path": "Hash/1.twoSum.md"
         },
         {
           "title": "Group Anagrams",
-          "path": "docs/Hash/groupAnagrams.md"
+          "path": "Hash/2.groupAnagrams.md"
+        },
+        {
+          "title": "Longest Consecutive",
+          "path": "Hash/3.longestConsecutive.md"
+        }
+      ]
+    },
+    {
+      "title": "Two Pointer",
+      "items": [
+        {
+          "title": "Move Zeroes",
+          "path": "Two-Pointer/1.moveZeroes.md"
+        },
+        {
+          "title": "Max Area",
+          "path": "Two-Pointer/2.maxArea.md"
+        },
+        {
+          "title": "Three Sum",
+          "path": "Two-Pointer/3.threeSum.md"
+        },
+        {
+          "title": "Trapping Rain Water",
+          "path": "Two-Pointer/4.trap.md"
         }
       ]
     }
