@@ -1,0 +1,77 @@
+/* ── Control buttons ── */
+.ctrl-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.ctrl-btn {
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  color: var(--text);
+  cursor: pointer;
+  font-size: var(--fs-base);
+  transition: all 0.15s;
+}
+.ctrl-btn:hover { background: var(--border); }
+.ctrl-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+.ctrl-btn.playing { border-color: #38bdf8; color: #38bdf8; }
+
+/* ── Speed control ── */
+.speed-select {
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  color: var(--text);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* ── Step counter ── */
+.step-counter {
+  font-size: var(--fs-base);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  min-width: 70px;
+  text-align: center;
+}
+
+/* ── Phase badge ── */
+.phase-badge {
+  flex-shrink: 0;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.phase-init    { background: rgba(245,158,11,0.2);  color: #f59e0b; }
+.phase-push    { background: rgba(56,189,248,0.2);  color: #38bdf8; }
+.phase-check   { background: rgba(100,116,139,0.2); color: #94a3b8; }
+.phase-record  { background: rgba(74,222,128,0.2);  color: #4ade80; }
+.phase-heapify { background: rgba(167,139,250,0.2); color: #a78bfa; }
+.phase-pop     { background: rgba(248,113,113,0.2); color: #f87171; }
+
+/* ── Keyboard hints ── */
+.kbd-hints {
+  display: flex;
+  gap: 6px;
+  margin-left: auto;
+  align-items: center;
+}
+.kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  font-size: 10px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  min-width: 22px;
+}
