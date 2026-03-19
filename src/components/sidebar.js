@@ -14,14 +14,30 @@ export function createSidebar(onNavigate) {
   sidebar.innerHTML = `
     <div class="sidebar-header">
       <span class="sidebar-brand">Leetcode Hot 100</span>
+      <button class="sidebar-toggle-btn" data-role="toggle" title="收起侧边栏">«</button>
     </div>
     <input class="sidebar-search" placeholder="Search..." data-role="search" />
     <nav class="sidebar-nav" data-role="nav"></nav>
     <div class="sidebar-progress" data-role="progress">
       <span data-role="progress-text">0 / ${manifest.length}</span>
+      <button class="sidebar-reset-btn" data-role="reset" title="重置进度">↺</button>
       <div class="sidebar-progress-bar"><div class="sidebar-progress-fill" data-role="progress-fill" style="width:0%"></div></div>
     </div>
   `;
+
+  // Expand button (shown when collapsed)
+  const expandBtn = document.createElement('button');
+  expandBtn.className = 'sidebar-expand-btn';
+  expandBtn.textContent = '»';
+  expandBtn.title = '展开侧边栏';
+  sidebar.appendChild(expandBtn);
+
+  const toggleBtn = sidebar.querySelector('[data-role="toggle"]');
+  function toggleCollapse() {
+    sidebar.classList.toggle('collapsed');
+  }
+  toggleBtn.addEventListener('click', toggleCollapse);
+  expandBtn.addEventListener('click', toggleCollapse);
 
   const nav = sidebar.querySelector('[data-role="nav"]');
   const searchInput = sidebar.querySelector('[data-role="search"]');
@@ -31,11 +47,24 @@ export function createSidebar(onNavigate) {
     nav.innerHTML = '';
     const done = getDone();
     for (const [cat, items] of Object.entries(groups)) {
-      const filtered = items.filter(p => !lf || p.title.toLowerCase().includes(lf));
+      const filtered = items.filter(p => {
+        if (!lf) return true;
+        // Match title text or problem number (e.g. "206" matches "206. Reverse Linked List")
+        const num = p.title.match(/^(\d+)\./)?.[1] || '';
+        return p.title.toLowerCase().includes(lf) || num === lf || cat.toLowerCase().includes(lf);
+      });
       if (filtered.length === 0) continue;
       const section = document.createElement('div');
-      section.className = 'nav-section';
-      section.innerHTML = `<div class="nav-section-title">${cat}</div>`;
+      section.className = 'nav-section collapsed';
+      const title = document.createElement('div');
+      title.className = 'nav-section-title';
+      title.innerHTML = `<span class="nav-section-arrow">▸</span>${esc(cat)}`;
+      title.style.cursor = 'pointer';
+      title.addEventListener('click', () => {
+        section.classList.toggle('collapsed');
+        title.querySelector('.nav-section-arrow').textContent = section.classList.contains('collapsed') ? '▸' : '▾';
+      });
+      section.appendChild(title);
       filtered.forEach(p => {
         const a = document.createElement('a');
         a.className = 'nav-item';
@@ -70,6 +99,16 @@ export function createSidebar(onNavigate) {
     if (text) text.textContent = `${count} / ${manifest.length}`;
     if (fill) fill.style.width = `${pct}%`;
   }
+
+  // Reset progress button
+  const resetBtn = sidebar.querySelector('[data-role="reset"]');
+  resetBtn.addEventListener('click', () => {
+    if (confirm('确定要重置所有进度吗？')) {
+      localStorage.removeItem('lc100-done');
+      renderNav(searchInput.value);
+      updateProgress();
+    }
+  });
 
   window.addEventListener('lc100-progress', () => {
     renderNav(searchInput.value);
