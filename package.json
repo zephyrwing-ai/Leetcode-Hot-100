@@ -1,1 +1,1 @@
-{"name":"leetcode-hot-100","private":true,"version":"0.0.0","type":"module","scripts":{"dev":"vite","build":"vite build","preview":"vite preview"},"devDependencies":{"vite":"^8.0.0"}}
+{"name":"leetcode-hot-100","private":true,"version":"0.0.0","type":"module","scripts":{"dev":"vite","build":"vite build","preview":"vite preview","openspec:check":"node scripts/verify-openspec-adapters.mjs"},"devDependencies":{"@fission-ai/openspec":"1.2.0","vite":"^8.0.0"}}

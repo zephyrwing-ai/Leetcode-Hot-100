@@ -1,0 +1,45 @@
+name: Verify OpenSpec adapters
+
+on:
+  pull_request:
+    paths:
+      - '.claude/**'
+      - '.codex/**'
+      - '.cursor/**'
+      - '.github/prompts/**'
+      - '.github/skills/**'
+      - '.github/workflows/openspec.yml'
+      - '.opencode/**'
+      - 'openspec/**'
+      - 'scripts/verify-openspec-adapters.mjs'
+      - 'package.json'
+      - 'package-lock.json'
+  push:
+    branches: [main]
+    paths:
+      - '.claude/**'
+      - '.codex/**'
+      - '.cursor/**'
+      - '.github/prompts/**'
+      - '.github/skills/**'
+      - '.github/workflows/openspec.yml'
+      - '.opencode/**'
+      - 'openspec/**'
+      - 'scripts/verify-openspec-adapters.mjs'
+      - 'package.json'
+      - 'package-lock.json'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run openspec:check
